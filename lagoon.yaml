@@ -61,6 +61,10 @@ providers:
 nodes:
   managers:
     instances: 1
+    proxy:
+      http_proxy: {{ .proxy_http }}
+      https_proxy: {{ .proxy_https }}
+      no_proxy: {{ .proxy_no }}
     provider:
       name: aws
       params:
