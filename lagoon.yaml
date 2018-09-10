@@ -4,11 +4,11 @@ version: 1.2.3
 lagoon:
   components:
     aws:
-      repository: lagoon-platform/aws-provider
-      version: master
+      repository: tbouvet/aws-provider
+      version: custom-config
     swarm:
-      repository: lagoon-platform/swarm-orchestrator
-      version: alpha1
+      repository: tbouvet/swarm-orchestrator
+      version: proxy
     stack1:
       repository: lagoon-platform/swarm-orchestrator
       version: alpha1
@@ -16,27 +16,41 @@ lagoon:
 orchestrator:
   component: swarm
   docker:
-    log-driver: json-file
-    log-opts: 
-      max-size: "20m"
-      max-file: "3"
-    disable-legacy-registry: true
-    userland-proxy: true
-    live-restore: false
-    hosts: 
-    - "unix:///var/run/docker.sock"
-    - "tcp://0.0.0.0:2376"
-    tls: true
-    tlscacert: "/etc/docker/certs/ca.pem"
-    tlscert: "/etc/docker/certs/cert.pem"
-    tlskey: "/etc/docker/certs/key.pem"
-    tlsverify: true 
+    params:
+      log-driver: json-file
+      log-opts: 
+        max-size: "20m"
+        max-file: "3"
+      disable-legacy-registry: true
+      userland-proxy: true
+      live-restore: false
+      hosts: 
+      - "unix:///var/run/docker.sock"
+      - "tcp://0.0.0.0:2376"
+      tls: true
+      tlscacert: "/etc/docker/certs/ca.pem"
+      tlscert: "/etc/docker/certs/cert.pem"
+      tlskey: "/etc/docker/certs/key.pem"
+      tlsverify: true 
+      registry-mirrors:
+      - "https://repository.inetpsa.com/"
+      
+    registries:
+      repository.inetpsa.com:
+        certificate: {{ .repository_cert }}
+        username: {{ .docker_username }}
+        password: {{ .docker_password }}
+
 
 providers:
   aws:
     component: aws
     params:
       region: "us-west-1"
+    proxy:
+      http_proxy: {{ .proxy_http }}
+      https_proxy: {{ .proxy_https }}
+      no_proxy: {{ .proxy_no }}
     env:
       AWS_REGION: {{ .aws_region }}
       AWS_ACCESS_KEY_ID: {{ .aws_access_key_id }}
@@ -45,6 +59,39 @@ providers:
 
 nodes:
   managers:
-    instances: 3        
-    
+    instances: 1
+    provider:
+      name: aws
+      params:
+        instance_type: "m5.4xlarge"
+        ami_id: "ami-20ee5e5d"
+        vpc_id: "vpc-e1cd7688"
+        vpc_subnet_id: "subnet-6da71a04"
+        assign_public_ip: False
+        security_groups_ids: sg-4aa6e323
+        instance_tags:
+          psa_reflex_name: noreflex
+        region: "eu-west-3"
+    volumes:
+    - name: /users
+      device_name: nvme1n1
+      params:
+        device_name: xvdf
+        volume_type: gp2
+        volume_size: 200
+        delete_on_termination: true
+    - name: /var/lib/docker
+      device_name: nvme2n1
+      params:
+        device_name: xvdg
+        volume_type: gp2
+        volume_size: 100
+        delete_on_termination: true
+        tags:
+          Type: Docker
 
+stacks:
+  stack1:
+    component: stack1
+    on:
+    - managers
