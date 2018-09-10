@@ -73,14 +73,14 @@ nodes:
           psa_reflex_name: noreflex
         region: "eu-west-3"
     volumes:
-    - name: /users
+    - path: /users
       device_name: nvme1n1
       params:
         device_name: xvdf
         volume_type: gp2
         volume_size: 200
         delete_on_termination: true
-    - name: /var/lib/docker
+    - path: /var/lib/docker
       device_name: nvme2n1
       params:
         device_name: xvdg
