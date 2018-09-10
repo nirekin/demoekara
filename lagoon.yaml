@@ -61,12 +61,13 @@ providers:
 nodes:
   managers:
     instances: 1
-    proxy:
-      http_proxy: {{ .proxy_http }}
-      https_proxy: {{ .proxy_https }}
-      no_proxy: {{ .proxy_no }}
+    
     provider:
       name: aws
+      proxy:
+        http_proxy: {{ .proxy_http }}
+        https_proxy: {{ .proxy_https }}
+        no_proxy: {{ .proxy_no }}
       params:
         instance_type: "m5.4xlarge"
         ami_id: "ami-20ee5e5d"
