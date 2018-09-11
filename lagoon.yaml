@@ -49,9 +49,9 @@ providers:
       region: "eu-west-3"
       assign_public_ip: False
     proxy:
-      http: {{ .proxy_http }}
-      https: {{ .proxy_https }}
-      noProxy: {{ .proxy_no }}
+      http_proxy: {{ .proxy_http }}
+      https_proxy: {{ .proxy_https }}
+      no_proxy: {{ .proxy_no }}
     env:
       AWS_REGION: {{ .aws_region }}
       AWS_ACCESS_KEY_ID: {{ .aws_access_key_id }}
