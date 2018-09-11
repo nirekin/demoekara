@@ -46,7 +46,7 @@ providers:
   aws:
     component: aws
     params:
-      region: "eu-west-3"
+      region: "eu-central-1"
       assign_public_ip: False
     proxy:
       http_proxy: {{ .proxy_http }}
