@@ -66,14 +66,13 @@ nodes:
       name: aws
       params:
         instance_type: "m5.4xlarge"
-        ami_id: "ami-20ee5e5d"
-        vpc_id: "vpc-e1cd7688"
-        vpc_subnet_id: "subnet-6da71a04"
+        ami_id: "ami-027583e616ca104df"
+        vpc_id: "vpc-950d16fd"
+        vpc_subnet_id: "subnet-0410bf6f"
         assign_public_ip: False
-        security_groups_ids: sg-4aa6e323
         instance_tags:
           psa_reflex_name: noreflex
-        region: "eu-west-3"
+        region: "eu-central-1"
     volumes:
     - path: /users
       device_name: nvme1n1
