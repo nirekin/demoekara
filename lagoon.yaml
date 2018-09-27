@@ -49,7 +49,7 @@ providers:
       assign_public_ip: False
     proxy:
       http_proxy: {{ .proxy_http }}
-      https_proxy: {{ .proxy_https }}
+      https_proxy: "{{ .proxy_https }}"
       no_proxy: {{ .proxy_no }}
     env:
       AWS_REGION: {{ .aws_region }}
