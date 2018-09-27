@@ -4,11 +4,11 @@ qualifier: testQualifier
 lagoon:
   components:
     aws:
-      repository: lagoon-platform/aws-provider
-      version: alpha2
+      repository: tbouvet/aws-provider
+      version: feat-inventory
     swarm:
-      repository: lagoon-platform/swarm-orchestrator
-      version: alpha2
+      repository: tbouvet/swarm-orchestrator
+      version: feat-inventory
     stack1:
       repository: lagoon-platform/swarm-orchestrator
       version: alpha2
