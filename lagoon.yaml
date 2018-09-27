@@ -41,7 +41,6 @@ orchestrator:
         username: {{ .docker_username }}
         password: {{ .docker_password }}
 
-
 providers:
   aws:
     component: aws
