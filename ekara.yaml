@@ -1,17 +1,17 @@
-name: testEnvironment
-qualifier: testQualifier
+name: testEnvironment3
+qualifier: testQualifier3
 
 ekara:
   components:
     aws:
-      repository: tbouvet/aws-provider
-      version: feat-inventory
+      repository: ekara-platform/aws-provider
+      version: alpha4
     swarm:
-      repository: tbouvet/swarm-orchestrator
-      version: feat-inventory
-    stack1:
       repository: ekara-platform/swarm-orchestrator
-      version: alpha2
+      version: alpha4
+    visualizer:
+      repository: ekara-platform/swarm-visualizer
+      version: alpha4
 
 orchestrator:
   component: swarm
@@ -32,25 +32,13 @@ orchestrator:
       tlscert: "/etc/docker/certs/cert.pem"
       tlskey: "/etc/docker/certs/key.pem"
       tlsverify: true 
-      registry-mirrors:
-      - "https://repository.inetpsa.com/"
-      
-    registries:
-      repository.inetpsa.com:
-        certificate: {{ .repository_cert }}
-        username: {{ .docker_username }}
-        password: {{ .docker_password }}
 
 providers:
   aws:
     component: aws
     params:
-      region: "eu-central-1"
-      assign_public_ip: False
-    proxy:
-      http_proxy: {{ .proxy_http }}
-      https_proxy: {{ .proxy_https }}
-      no_proxy: "{{ .proxy_no }}"
+      region: "us-west-1"
+      
     env:
       AWS_REGION: {{ .aws_region }}
       AWS_ACCESS_KEY_ID: {{ .aws_access_key_id }}
@@ -59,39 +47,75 @@ providers:
 
 nodes:
   managers:
-    instances: 3
-    
+    instances: 3        
     provider:
       name: aws
       params:
-        instance_type: "m5.4xlarge"
-        ami_id: "ami-027583e616ca104df"
-        vpc_id: "vpc-950d16fd"
-        vpc_subnet_id: "subnet-0410bf6f"
-        assign_public_ip: False
-        instance_tags:
-          psa_reflex_name: noreflex
-        region: "eu-central-1"
+        instance_type: "t2.micro"
+        #ami_id: "ami-f90a4880"
+        vpc_id: "vpc-880aeaef"
+        region: "eu-west-1"
+        security_groups:
+        - name: group1
+          rules:
+          - proto: tcp
+            ports:
+            - 22
+            cidr_ip: 0.0.0.0/0
+            rule_desc: allow all on port 22
+        - name: group2
+          rules:
+          - proto: tcp
+            ports:
+            - 80
+            cidr_ip: 0.0.0.0/0
+            rule_desc: allow all on port 80
+          - proto: tcp
+            ports:
+            - 8080
+            cidr_ip: 0.0.0.0/0
+            rule_desc: allow all on port 8080
+        - name: swarm
+          rules:
+          - proto: tcp
+            ports:
+            - 2377
+            cidr_ip: 0.0.0.0/0
+            rule_desc: cluster management communications
+          - proto: tcp
+            ports:
+            - 7946 
+            cidr_ip: 0.0.0.0/0
+            rule_desc: communication among nodes
+          - proto: udp
+            ports:
+            - 7946 
+            cidr_ip: 0.0.0.0/0
+            rule_desc: communication among nodes
+          - proto: udp
+            ports:
+            - 4789 
+            cidr_ip: 0.0.0.0/0
+            rule_desc: overlay network traffic 
     volumes:
-    - path: /users
-      device_name: nvme1n1
+    - path: /data1
       params:
         device_name: xvdf
         volume_type: gp2
-        volume_size: 200
+        volume_size: 9
         delete_on_termination: true
     - path: /var/lib/docker
-      device_name: nvme2n1
       params:
         device_name: xvdg
-        volume_type: gp2
-        volume_size: 100
+        volume_type: standard
+        volume_size: 1
         delete_on_termination: true
         tags:
-          Type: Docker
+          Type: Docker 
+          TestTagKey: TestTagValue
 
 stacks:
-  stack1:
-    component: stack1
+  visualizer:
+    component: visualizer
     on:
     - managers
