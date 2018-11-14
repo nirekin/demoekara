@@ -5,10 +5,10 @@ ekara:
   components:
     aws:
       repository: ekara-platform/aws-provider
-      version: alpha4
+      
     swarm:
       repository: ekara-platform/swarm-orchestrator
-      version: alpha4
+      
     visualizer:
       repository: ekara-platform/swarm-visualizer
       
