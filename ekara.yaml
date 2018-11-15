@@ -4,11 +4,11 @@ qualifier: testQualifier3
 ekara:
   components:
     aws:
-      repository: ekara-platform/aws-provider
-      version: alpha4
+      repository: tbouvet/aws-provider
+      version: nodeset
     swarm:
-      repository: ekara-platform/swarm-orchestrator
-      version: alpha5
+      repository: tbouvet/swarm-orchestrator
+      version: nodeset
     visualizer:
       repository: ekara-platform/swarm-visualizer
       version: alpha4
@@ -120,5 +120,3 @@ nodes:
 stacks:
   visualizer:
     component: visualizer
-    on:
-    - managers
