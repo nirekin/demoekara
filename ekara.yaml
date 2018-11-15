@@ -117,6 +117,149 @@ nodes:
       label1_key: "label1_value"
       label2_key: "label2_value"
       
+      
+  worker1:
+    instances: 10        
+    provider:
+      name: aws
+      params:
+        instance_type: "t2.micro"
+        ami_id: "ami-f90a4880"
+        vpc_id: "vpc-880aeaef"
+        region: "eu-west-1"
+        security_groups:
+        - name: group1
+          rules:
+          - proto: tcp
+            ports:
+            - 22
+            cidr_ip: 0.0.0.0/0
+            rule_desc: allow all on port 22
+        - name: group2
+          rules:
+          - proto: tcp
+            ports:
+            - 80
+            cidr_ip: 0.0.0.0/0
+            rule_desc: allow all on port 80
+          - proto: tcp
+            ports:
+            - 8080
+            cidr_ip: 0.0.0.0/0
+            rule_desc: allow all on port 8080
+        - name: swarm
+          rules:
+          - proto: tcp
+            ports:
+            - 2377
+            cidr_ip: 0.0.0.0/0
+            rule_desc: cluster management communications
+          - proto: tcp
+            ports:
+            - 7946 
+            cidr_ip: 0.0.0.0/0
+            rule_desc: communication among nodes
+          - proto: udp
+            ports:
+            - 7946 
+            cidr_ip: 0.0.0.0/0
+            rule_desc: communication among nodes
+          - proto: udp
+            ports:
+            - 4789 
+            cidr_ip: 0.0.0.0/0
+            rule_desc: overlay network traffic 
+    volumes:
+    - path: /data1
+      params:
+        device_name: xvdf
+        volume_type: gp2
+        volume_size: 9
+        delete_on_termination: true
+    - path: /var/lib/docker
+      params:
+        device_name: xvdg
+        volume_type: standard
+        volume_size: 1
+        delete_on_termination: true
+        tags:
+          Type: Docker 
+          TestTagKey: TestTagValue
+    labels:
+      label1_key: "label1_value"
+      label2_key: "label2_value"      
+  
+  testers:
+    instances: 10        
+    provider:
+      name: aws
+      params:
+        instance_type: "t2.micro"
+        ami_id: "ami-f90a4880"
+        vpc_id: "vpc-880aeaef"
+        region: "eu-west-1"
+        security_groups:
+        - name: group1
+          rules:
+          - proto: tcp
+            ports:
+            - 22
+            cidr_ip: 0.0.0.0/0
+            rule_desc: allow all on port 22
+        - name: group2
+          rules:
+          - proto: tcp
+            ports:
+            - 80
+            cidr_ip: 0.0.0.0/0
+            rule_desc: allow all on port 80
+          - proto: tcp
+            ports:
+            - 8080
+            cidr_ip: 0.0.0.0/0
+            rule_desc: allow all on port 8080
+        - name: swarm
+          rules:
+          - proto: tcp
+            ports:
+            - 2377
+            cidr_ip: 0.0.0.0/0
+            rule_desc: cluster management communications
+          - proto: tcp
+            ports:
+            - 7946 
+            cidr_ip: 0.0.0.0/0
+            rule_desc: communication among nodes
+          - proto: udp
+            ports:
+            - 7946 
+            cidr_ip: 0.0.0.0/0
+            rule_desc: communication among nodes
+          - proto: udp
+            ports:
+            - 4789 
+            cidr_ip: 0.0.0.0/0
+            rule_desc: overlay network traffic 
+    volumes:
+    - path: /data1
+      params:
+        device_name: xvdf
+        volume_type: gp2
+        volume_size: 9
+        delete_on_termination: true
+    - path: /var/lib/docker
+      params:
+        device_name: xvdg
+        volume_type: standard
+        volume_size: 1
+        delete_on_termination: true
+        tags:
+          Type: Docker 
+          TestTagKey: TestTagValue
+    labels:
+      label1_key: "label1_value"
+      label2_key: "label2_value"    
+      
 stacks:
   visualizer:
     component: visualizer
