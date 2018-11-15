@@ -119,7 +119,7 @@ nodes:
       
       
   worker1:
-    instances: 10        
+    instances: 7        
     provider:
       name: aws
       params:
@@ -190,7 +190,7 @@ nodes:
       label2_key: "label2_value"      
   
   testers:
-    instances: 10        
+    instances: 5        
     provider:
       name: aws
       params:
