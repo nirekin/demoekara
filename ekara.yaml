@@ -5,13 +5,13 @@ ekara:
   components:
     aws:
       repository: ekara-platform/aws-provider
-      
+      version: alpha4
     swarm:
       repository: ekara-platform/swarm-orchestrator
-      
+      version: alpha5
     visualizer:
       repository: ekara-platform/swarm-visualizer
-      
+      version: alpha4
 
 orchestrator:
   component: swarm
@@ -113,8 +113,6 @@ nodes:
         tags:
           Type: Docker 
           TestTagKey: TestTagValue
-
- 
 
 stacks:
   visualizer:
