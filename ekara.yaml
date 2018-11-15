@@ -50,7 +50,7 @@ nodes:
     instances: 3        
     provider:
       name: aws
-      labels
+      labels:
         label1_key: "label1_value"
         label2_key: "label2_value"
       params:
