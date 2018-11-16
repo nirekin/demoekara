@@ -119,7 +119,7 @@ nodes:
       
       
   worker1:
-    instances: 7        
+    instances: 4        
     provider:
       name: aws
       params:
