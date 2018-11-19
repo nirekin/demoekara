@@ -118,7 +118,7 @@ nodes:
       label2_key: "label2_value"
       
       
-  worker1:
+  worker:
     instances: 1        
     provider:
       name: aws
