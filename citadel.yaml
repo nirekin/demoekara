@@ -4,7 +4,7 @@ qualifier: dev
 ekara:
   components:
     cloud1:
-      repository: tbouvet/aws-provider
+      repository: tbouvet/openstack-provider
       version: test
     swarm:
       repository: tbouvet/swarm-orchestrator
