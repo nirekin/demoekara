@@ -109,7 +109,7 @@ nodes:
     - path: /users
       params:
         volume_type: CEPH-1000
-        volume_size: 50
+        volume_size: 100
     - path: /var/lib/docker
       params:
         volume_type: CEPH-1000
