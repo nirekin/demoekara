@@ -5,13 +5,13 @@ ekara:
   components:
     cloud1:
       repository: tbouvet/openstack-provider
-      version: test
+      ref: test
     swarm:
       repository: tbouvet/swarm-orchestrator
-      version: test      
+      ref: test      
     visualizer:
       repository: ekara-platform/swarm-visualizer
-      version: v1.0.0-beta1
+      ref: v1.0.0-beta1
 
 orchestrator:
   component: swarm
