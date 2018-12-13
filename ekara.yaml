@@ -120,12 +120,6 @@ nodes:
         tags:
           Type: Docker 
           TestTagKey: TestTagValue
-    hooks:
-      provision:
-        before:
-          - task: hellotask
-        after:
-          - task: hellotask
 
 stacks:
   visualizer:
