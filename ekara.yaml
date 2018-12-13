@@ -14,11 +14,6 @@ ekara:
       ref: 1.0.0-beta1
     hello:
       repository: nirekin/dummy-task
-      
-tasks:
-  hellotask:
-    component: hello
-    playbook: install.yml
 
 orchestrator:
   component: swarm
