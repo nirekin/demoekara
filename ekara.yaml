@@ -1,5 +1,5 @@
-name: DemoEnvironment
-qualifier: Dev
+name: HookTest
+qualifier: GBE
 
 ekara:
   components:
