@@ -12,8 +12,6 @@ ekara:
     visualizer:
       repository: ekara-platform/swarm-visualizer
       ref: 1.0.0-beta1
-    hello:
-      repository: nirekin/dummy-task
 
 orchestrator:
   component: swarm
