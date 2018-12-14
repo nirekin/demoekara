@@ -1,5 +1,5 @@
 name: HookTest
-qualifier: gbe
+qualifier: GBE
 
 ekara:
   components:
@@ -12,6 +12,13 @@ ekara:
     visualizer:
       repository: ekara-platform/swarm-visualizer
       ref: 1.0.0-beta1
+    hello:
+      repository: nirekin/dummy-task
+      
+tasks:
+  hellotask:
+    component: hello
+    playbook: install.yml
 
 orchestrator:
   component: swarm
@@ -113,7 +120,12 @@ nodes:
         tags:
           Type: Docker 
           TestTagKey: TestTagValue
-
+    hooks:
+      provision:
+        before:
+          - task: hellotask  
+        after:
+          - task: hellotask  
 stacks:
   visualizer:
     component: visualizer
