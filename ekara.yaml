@@ -14,6 +14,7 @@ ekara:
       ref: 1.0.0-beta1
     hello:
       repository: nirekin/dummy-task
+      ref: test
       
 tasks:
   hellotask:
