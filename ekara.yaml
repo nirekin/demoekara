@@ -132,14 +132,3 @@ nodes:
 stacks:
   visualizer:
     component: visualizer
-  hooks:
-    deploy:
-      before:
-        - task: hellotask
-      after:
-        - task: hellotask
-    undeploy:
-      before:
-        - task: hellotask
-      after:
-        - task: hellotask
