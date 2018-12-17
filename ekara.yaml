@@ -144,3 +144,25 @@ stacks:
           - task: hellotask
         after:
           - task: hellotask
+
+hooks:
+  provision:
+    before:
+      - task: hellotask
+    after:
+      - task: hellotask
+  deploy:
+    before:
+      - task: hellotask
+    after:
+      - task: hellotask
+  undeploy:
+    before:
+      - task: hellotask
+    after:
+      - task: hellotask
+  destroy:
+    before:
+      - task: hellotask
+    after:
+      - task: hellotask
