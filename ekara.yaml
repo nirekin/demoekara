@@ -52,27 +52,7 @@ providers:
       AWS_ACCESS_KEY_ID: {{ .aws_access_key_id }}
       AWS_SECRET_ACCESS_KEY: {{ .aws_access_key }}
 
-hooks:
-  provision:
-    before:
-      - task: hellotask
-    after:
-      - task: hellotask
-  deploy:
-    before:
-      - task: hellotask
-    after:
-      - task: hellotask
-  undeploy:
-    before:
-      - task: hellotask
-    after:
-      - task: hellotask
-  destroy:
-    before:
-      - task: hellotask
-    after:
-      - task: hellotask
+
 
 
 nodes:
