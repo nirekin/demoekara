@@ -17,8 +17,9 @@ ekara:
      repository: https://github.psa-cloud.com/u063326/lagoon-distribution
      ref: reflex-addon    
      auth:
-       method: token
-       token: {{ .git_token }}
+       method: basic
+       user: {{ .git_user }}
+       password: {{ .git_password }}
     
 tasks:
   testhook_pre:
