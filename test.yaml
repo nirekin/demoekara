@@ -3,7 +3,7 @@ qualifier: testbeta
 
 ekara:
   distribution:
-    repository: github.psa-cloud.com/u063326/lagoon-distribution
+    repository: https://github.psa-cloud.com/u063326/lagoon-distribution
     ref: reflex-addon
   components:
     helios:
@@ -16,7 +16,7 @@ ekara:
       repository: ekara-platform/swarm-visualizer
       ref: 1.0.0-beta1
     distrib:
-     repository: github.psa-cloud.com/u063326/lagoon-distribution
+     repository: https://github.psa-cloud.com/u063326/lagoon-distribution
      ref: reflex-addon      
      
 tasks:
