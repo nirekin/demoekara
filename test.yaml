@@ -2,9 +2,7 @@ name: lagoon
 qualifier: testbeta
 
 ekara:
-  distribution:
-    repository: https://github.psa-cloud.com/u063326/lagoon-distribution
-    ref: reflex-addon
+ 
   components:
     helios:
       repository: ekara-platform/openstack-provider
