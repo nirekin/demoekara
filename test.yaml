@@ -15,16 +15,18 @@ ekara:
     visualizer:
       repository: ekara-platform/swarm-visualizer
       ref: 1.0.0-beta1
-      
+    distrib:
+     repository: github.psa-cloud.com/u063326/lagoon-distribution
+     ref: reflex-addon      
+     
 tasks:
   testhook_pre:
-    component: distribution
+    component: distrib
     playbook: pre-create.yml
 
   testhook_post:
-    component: distribution
+    component: distrib
     playbook: post-create.yml
-
 
 orchestrator:
   component: swarm
